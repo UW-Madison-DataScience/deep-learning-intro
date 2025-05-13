@@ -83,7 +83,8 @@ if __name__ == "__main__":
         '04_training_history_1.png',
         '04_training_history_loss_1.png',
         '04_dense_model_training_history.png',
-        '04_training_history_3.png',        
+        '04_training_history_3.png',   
+        '03_tensorboard.png'     
     ]
 
     batch_convert_md_to_ipynb(INPUT_DIR, OUTPUT_DIR, IMAGE_URL, EXCLUDE_FILES, EXCLUDED_IMAGES)

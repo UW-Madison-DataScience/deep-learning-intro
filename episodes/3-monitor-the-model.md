@@ -174,7 +174,7 @@ This measured how close the distribution of the neural network outputs correspon
 Now we want to work on a *regression task*, thus not predicting a class label (or integer number) for a datapoint. In regression, we predict one (and sometimes many) values of a feature. This is typically a floating point number.
 
 ::: challenge
-## Exercise: Architecture of the network
+## Architecture of the network
 As we want to design a neural network architecture for a regression task,
 see if you can first come up with the answers to the following questions:
 
@@ -278,7 +278,7 @@ This subset is called a 'batch', the number of samples in one batch is called th
 
 ::: challenge
 
-## Exercise: Gradient descent
+## Gradient descent
 
 Answer the following questions:
 
@@ -453,7 +453,7 @@ plot_predictions(y_test_predicted, y_test, title='Predictions on the test set')
 ![](fig/03_regression_predictions_testset.png){alt='Scatter plot between predictions and true sunshine hours in Basel on the test set showing a wide spread'}
 
 ::: challenge
-## Exercise: Reflecting on our results
+## Reflecting on our results
 * Is the performance of the model as you expected (or better/worse)?
 * Is there a noteable difference between training set and test set? And if so, any idea why?
 * (Optional) When developing a model, you will often vary different aspects of your model like
@@ -531,7 +531,7 @@ Neural network:  4.077792167663574
 Judging from the numbers alone, our neural network prediction would be performing worse than the baseline.
 
 ::: challenge
-## Exercise: Baseline
+## Baseline
 1. Looking at this baseline: Would you consider this a simple or a hard problem to solve?
 2. (Optional) Can you think of other baselines?
 
@@ -585,7 +585,7 @@ plot_history(history, ['root_mean_squared_error', 'val_root_mean_squared_error']
 ![](fig/03_training_history_2_rmse.png){alt='Plot of RMSE vs epochs for the training set and the validation set which depicts a divergence between the two around 10 epochs.'}
 
 ::: challenge
-## Exercise: plot the training progress.
+## Plot the training progress.
 1. Is there a difference between the training curves of training versus validation data? And if so, what would this imply?
 2. (Optional) Take a pen and paper, draw the perfect training and validation curves.
   (This may seem trivial, but it will trigger you to think about what you actually would like to see)
@@ -609,7 +609,7 @@ Overfitting is a very common issue and there are many strategies to handle it.
 Most similar to classical machine learning might to **reduce the number of parameters**.
 
 ::: challenge
-## Exercise: Try to reduce the degree of overfitting by lowering the number of parameters
+## Try to reduce the degree of overfitting by lowering the number of parameters
 We can keep the network architecture unchanged (2 dense layers + a one-node output layer) and only play with the number of nodes per layer.
 Try to lower the number of nodes in one or both of the two dense layers and observe the changes to the training and validation losses.
 If time is short: Suggestion is to run one network with only 10 and 5 nodes in the first and second layer.
@@ -835,7 +835,7 @@ Well, the above is certainly not perfect. But how good or bad is this? Maybe not
 But let's better compare it to the naive baseline we created in the beginning. What would you say, did we improve on that?
 
 ::: challenge
-## Exercise: Simplify the model and add data
+## Simplify the model and add data
 You may have been wondering why we are including weather observations from
 multiple cities to predict sunshine hours only in Basel. The weather is
 a complex phenomenon with correlations over large distances and time scales,
