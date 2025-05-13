@@ -83,6 +83,7 @@ def md_to_notebook(md_file, notebook_file, base_image_url):
         url = ref_image_map.get(label)
         return f"![{alt_text}]({url})" if url else match.group(0)
 
+    md_content = re.sub(r'!\[\]\[([^\]]+)\]', lambda m: f'![{m.group(1)}][{m.group(1)}]', md_content)
     md_content = re.sub(r'!\[([^\]]+)]\[([^\]]+)]', replace_reference_images, md_content)
 
     # Remove reference definitions from the bottom of the file
