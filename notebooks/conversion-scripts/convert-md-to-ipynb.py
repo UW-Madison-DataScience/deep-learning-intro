@@ -15,7 +15,7 @@ def preprocess_markdown(md_content):
 
     # Step 2: Transform ::: callout or challenge blocks with headers into markdown headings
     pattern = re.compile(
-        r"^:::*\s*(callout|challenge)\s*\n+##\s*(.*?)\n+(.*?)(?=^:::*\s*$)", 
+        r"^:::*\s*(callout|challenge|discussion)\s*\n+##\s*(.*?)\n+(.*?)(?=^:::*\s*$)", 
         re.MULTILINE | re.DOTALL | re.IGNORECASE
     )
 
