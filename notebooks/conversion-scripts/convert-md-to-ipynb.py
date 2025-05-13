@@ -1,7 +1,45 @@
+
+def preprocess_markdown(md_content):
+    # Step 1: Remove ::: solution blocks and their contents
+    md_content = re.sub(r"^:::*\s*solution\s*\n.*?^:::*\s*$", "", md_content, flags=re.MULTILINE | re.DOTALL | re.IGNORECASE)
+
+    # Step 2: Transform ::: callout or challenge blocks with headers into markdown headings
+    pattern = re.compile(
+        r"^:::*\s*(callout|challenge)\s*\n+##\s*(.*?)\n+(.*?)(?=^:::*\s*$)", 
+        re.MULTILINE | re.DOTALL | re.IGNORECASE
+    )
+
+    def repl(match):
+        block_type = match.group(1).capitalize()
+        heading = match.group(2).strip()
+        body = match.group(3).strip()
+        return f"## {block_type}: {heading}\n\n{body}"
+
+    md_content = re.sub(pattern, repl, md_content)
+    return md_content
+
+
 import os
 import re
 import nbformat as nbf
 import argparse
+
+
+
+def postprocess_challenge_and_callout(md_content):
+    # Merge ::: callout or ::: challenge blocks with following ## headers
+    pattern = re.compile(
+        r'^:::\s*(callout|challenge)\s*\n+##\s*(.*?)\n+(.*?)(?=^:::\s*$)', 
+        re.MULTILINE | re.DOTALL | re.IGNORECASE
+    )
+    
+    def repl(match):
+        block_type = match.group(1).capitalize()
+        heading = match.group(2).strip()
+        body = match.group(3).strip()
+        return f"## {block_type}: {heading}\n\n{body}"
+
+    return re.sub(pattern, repl, md_content)
 
 
 def md_to_notebook(md_file, notebook_file, base_image_url):
@@ -58,6 +96,10 @@ def md_to_notebook(md_file, notebook_file, base_image_url):
         return f"![{alt_text}]({web_image_url})"
 
     md_content = re.sub(r'!\[(.*?)\]\((.*?)\)', replace_image_path, md_content)
+
+    md_content = postprocess_challenge_and_callout(md_content)
+
+    md_content = preprocess_markdown(md_content)
 
     # Split the content into lines
     lines = md_content.split('\n')
