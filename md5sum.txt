@@ -17,6 +17,6 @@
 "instructors/schedule.md" "332b32d24f144b29a280176e6b5d015f" "site/built/schedule.md" "2025-03-10"
 "instructors/survey-templates.md" "ea5d46e7b54d335f79e57a7bc31d1c5c" "site/built/survey-templates.md" "2025-02-11"
 "learners/reference.md" "e47218673643f23431c540c2d3b27868" "site/built/reference.md" "2025-02-11"
-"learners/setup.md" "9f3b3f79d6de1d0ae3b9009b7e18a16b" "site/built/setup.md" "2025-05-13"
+"learners/setup.md" "0583f7d54feb4197196741bf821d35fb" "site/built/setup.md" "2025-05-13"
 "paper/paper.md" "5257d2bb9c07be835c20d66855c38202" "site/built/paper.md" "2025-03-03"
 "profiles/learner-profiles.md" "ef0f26dd0874387d80ed3fd468b99e23" "site/built/learner-profiles.md" "2025-02-11"
