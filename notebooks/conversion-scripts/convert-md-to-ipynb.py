@@ -26,6 +26,9 @@ def preprocess_markdown(md_content):
         return f"## {block_type}: {heading}\n\n{body}"
 
     md_content = re.sub(pattern, repl, md_content)
+    # Remove orphaned alt text lines like: {alt='...'}
+    md_content = re.sub(r'^\{alt=.*?\}\s*$', '', md_content, flags=re.MULTILINE)
+
     return md_content
 
 
