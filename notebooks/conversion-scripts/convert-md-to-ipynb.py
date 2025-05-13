@@ -42,7 +42,7 @@ def postprocess_challenge_and_callout(md_content):
     return re.sub(pattern, repl, md_content)
 
 
-def md_to_notebook(md_file, notebook_file, base_image_url):
+def md_to_notebook(md_file, notebook_file, base_image_url, excluded_figs=None):
     # Read the Markdown file
     with open(md_file, 'r', encoding='utf-8') as file:
         md_lines = file.readlines()
@@ -192,6 +192,17 @@ def md_to_notebook(md_file, notebook_file, base_image_url):
     cells = [cell for cell in cells if cell['source'].strip()]
 
     # Add cells to the notebook
+    # Final filtering of excluded image references from markdown cells
+    if excluded_figs:
+        filtered_cells = []
+        for cell in cells:
+            if cell['cell_type'] == 'markdown':
+                source = cell['source']
+                if any(img in source for img in excluded_figs):
+                    continue
+            filtered_cells.append(cell)
+        cells = filtered_cells
+
     nb['cells'] = cells
 
     # Write the notebook to a file
@@ -201,12 +212,14 @@ def md_to_notebook(md_file, notebook_file, base_image_url):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert Markdown file to Jupyter Notebook")
+    parser.add_argument('--exclude-images', nargs='*', default=[], help='List of image filenames to exclude')
     parser.add_argument("input_dir", help="Directory containing the input Markdown file")
     parser.add_argument("output_dir", help="Directory to save the output Jupyter Notebook")
     parser.add_argument("base_image_url", help="Base URL for images")
     parser.add_argument("filename", help="Filename of the input Markdown file (with extension)")
 
     args = parser.parse_args()
+    excluded_figs = args.exclude_images
 
     # Ensure directories have trailing slashes and exist
     input_path = os.path.join(args.input_dir, args.filename)
@@ -215,7 +228,7 @@ if __name__ == "__main__":
 
     print(f"Converting {input_path} to {output_path}...")
 
-    md_to_notebook(input_path, output_path, args.base_image_url)
+    md_to_notebook(input_path, output_path, args.base_image_url, excluded_figs=excluded_figs)
 
 #e.g., ...
 # python convert_md_to_notebook.py ./episodes ./notebooks https://github.com/user/repo/raw/main/images example.md

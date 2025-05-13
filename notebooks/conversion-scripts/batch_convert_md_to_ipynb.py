@@ -5,7 +5,7 @@ import sys
 
 
 
-def batch_convert_md_to_ipynb(input_directory, output_directory, image_url, exclude_files):
+def batch_convert_md_to_ipynb(input_directory, output_directory, image_url, exclude_files, excluded_images=None):
     """
     Batch process .md files in a directory, excluding specific files, converting them to .ipynb using convert-md-to-ipynb.py.
 
@@ -33,14 +33,15 @@ def batch_convert_md_to_ipynb(input_directory, output_directory, image_url, excl
             subprocess.run(
                 [
                     sys.executable, "convert-md-to-ipynb.py",
-                    input_directory, 
-                    output_directory, 
-                    image_url, 
+                    input_directory,
+                    output_directory,
+                    image_url,
                     md_file
-                ],
+                ]
+                + (["--exclude-images"] + excluded_images if excluded_images else []),
                 check=True
             )
-            
+                        
             print(f"Successfully converted: {md_file}")
         except subprocess.CalledProcessError as e:
             print(f"Error processing {md_file}: {e}")
@@ -67,7 +68,13 @@ if __name__ == "__main__":
         "7e-OOD-detection-algo-design.md"
     ]
 
-    batch_convert_md_to_ipynb(INPUT_DIR, OUTPUT_DIR, IMAGE_URL, EXCLUDE_FILES)
+    EXCLUDED_IMAGES = [
+        '02_training_curve.png',
+        'confusion_matrix.png',
+        'pairplot.png'
+    ]
+
+    batch_convert_md_to_ipynb(INPUT_DIR, OUTPUT_DIR, IMAGE_URL, EXCLUDE_FILES, EXCLUDED_IMAGES)
 
 
     # Example
