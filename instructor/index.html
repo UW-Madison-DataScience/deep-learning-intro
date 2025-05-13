@@ -569,6 +569,17 @@ proceeding.</p>
 following commands.</p>
 <ol style="list-style-type: decimal"><li>Create a <a href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#create-and-use-virtual-environments" class="external-link">virtual
 environment</a> called <code>venv</code> using the “venv” command:</li>
+</ol><pre class="shell"><code>python -m venv venv  # Use python3 or py instead if one of them points to 3.11.9.</code></pre>
+<p>If you run the <code>ls</code> command from
+<code>~/Desktop/dl_workshop</code>, you should see a new
+<code>venv</code> folder inside it</p>
+<pre class="shell"><code><span><span class="va">ls</span></span></code></pre>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>venv/</code></pre>
+</div>
+<ol start="2" style="list-style-type: decimal"><li>Activate the newly created virtual environment:</li>
 </ol><div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
@@ -577,9 +588,9 @@ environment</a> called <code>venv</code> using the “venv” command:</li>
   On Linux/macOs
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
-<pre class="shell"><code>python3 -m venv venv # Use python or py instead if one of them points to 3.11.9.</code></pre>
+<pre class="shell"><code>source venv/bin/activate</code></pre>
 </div>
 </div>
 </div>
@@ -592,47 +603,7 @@ environment</a> called <code>venv</code> using the “venv” command:</li>
   On Windows
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
-<div class="accordion-body">
-<pre class="shell"><code>py -m venv venv  # Use python3 or python instead if one of them points to 3.11.9.</code></pre>
-</div>
-</div>
-</div>
-</div>
-<p>If you run the <code>ls</code> command from
-<code>~/Desktop/dl_workshop</code>, you should see a new
-<code>venv</code> folder inside it</p>
-<pre class="shell"><code><span><span class="va">ls</span></span></code></pre>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>venv/</code></pre>
-</div>
-<ol start="2" style="list-style-type: decimal"><li>Activate the newly created virtual environment:</li>
-</ol><div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
-  <h3 class="accordion-header" id="headingSpoiler3">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  On Linux/macOs
-  </h3>
-</button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
-<div class="accordion-body">
-<pre class="shell"><code>source venv/bin/activate</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
-  <h3 class="accordion-header" id="headingSpoiler4">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  On Windows
-  </h3>
-</button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <pre class="shell"><code>venv\Scripts\activate</code></pre>
 <p>If you’re using Git Bash on Windows, you need to add the source
@@ -652,15 +623,15 @@ management system built into Python.Pip should be available in your
 system once you installed Python successfully.</li>
 </ol><pre class="shell"><code>python -m pip install --upgrade pip # remember: use python3 or py instead if it points to 3.11.9</code></pre>
 <ol start="4" style="list-style-type: decimal"><li>Install the required packages:</li>
-</ol><div id="accordionSpoiler5" class="accordion spoiler-accordion accordion-flush">
+</ol><div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler5" aria-expanded="false" aria-controls="collapseSpoiler5">
-  <h3 class="accordion-header" id="headingSpoiler5">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
+  <h3 class="accordion-header" id="headingSpoiler3">
   <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
   On Linux/macOs
   </h3>
 </button>
-<div id="collapseSpoiler5" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler5" aria-labelledby="headingSpoiler5">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <pre class="shell"><code>python3 -m pip install jupyter seaborn scikit-learn pandas tensorflow pydot # Use python or py instead if one of them points to 3.11.9.</code></pre>
 <p>Note for MacOS users: there is a package
@@ -673,17 +644,17 @@ forum</a>.</p>
 </div>
 </div>
 </div>
-<div id="accordionSpoiler6" class="accordion spoiler-accordion accordion-flush">
+<div id="accordionSpoiler4" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler6" aria-expanded="false" aria-controls="collapseSpoiler6">
-  <h3 class="accordion-header" id="headingSpoiler6">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler4" aria-expanded="false" aria-controls="collapseSpoiler4">
+  <h3 class="accordion-header" id="headingSpoiler4">
   <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
   On Windows
   </h3>
 </button>
-<div id="collapseSpoiler6" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler6" aria-labelledby="headingSpoiler6">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
 <div class="accordion-body">
-<pre class="shell"><code>py -m pip install jupyter seaborn scikit-learn pandas tensorflow pydot # Use python or python3 instead if one of them points to 3.11.9.</code></pre>
+<pre class="shell"><code>python -m pip install jupyter seaborn scikit-learn pandas tensorflow pydot # Use py or python3 instead if one of them points to 3.11.9.</code></pre>
 </div>
 </div>
 </div>
@@ -706,22 +677,22 @@ created for this course, and type the command:</p>
 <pre class="shell"><code>jupyter lab</code></pre>
 </section><section><h2 class="section-heading" id="check-your-setup">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a></h2>
 <hr class="half-width"><p>To check whether all packages installed correctly, start a jupyter
-notebook in jupyter lab as explained above. Run the following lines of
-code:</p>
-<div class="codewrapper sourceCode" id="cb16">
+notebook in jupyter lab as explained above (<strong>with virtual
+environment activated</strong>). Run the following lines of code:</p>
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
-<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
 </div>
 <p>This should output the versions of all required packages without
 giving errors. Most versions will work fine with this lesson, but: - For
