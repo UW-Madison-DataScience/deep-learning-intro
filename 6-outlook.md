@@ -115,7 +115,7 @@ Depending on the use case, diversity can also refer to imbalance on other, more 
 :::
 
 ::: discussion
-## Discussion: Large Language Models and prompt engineering
+## Large Language Models and prompt engineering
 Large Language Models (LLMs) are deep learning models that are able to perform general-purpose language generation.
 They are trained on large amounts of texts, such all pages of Wikipedia. 
 In recent years the quality of LLMs language understanding and generation has increased tremendously, and since the launch of generative chatbot ChatGPT in 2022 the power of LLMs is now appreciated by the general public.
