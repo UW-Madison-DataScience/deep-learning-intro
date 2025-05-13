@@ -71,7 +71,19 @@ if __name__ == "__main__":
     EXCLUDED_IMAGES = [
         '02_training_curve.png',
         'confusion_matrix.png',
-        'pairplot.png'
+        'pairplot.png',
+        '03_training_history_1_rmse.png',
+        '03_regression_predictions_trainset.png',
+        '03_regression_predictions_testset.png',
+        '03_regression_test_5_naive_baseline.png',
+        '03_training_history_2_rmse.png',
+        '03_training_history_3_rmse_early_stopping.png',
+        '03_training_history_5_rmse_batchnorm.png',
+        '03_regression_test_5_dropout_batchnorm.png',
+        '04_training_history_1.png',
+        '04_training_history_loss_1.png',
+        '04_dense_model_training_history.png',
+        '04_training_history_3.png',        
     ]
 
     batch_convert_md_to_ipynb(INPUT_DIR, OUTPUT_DIR, IMAGE_URL, EXCLUDE_FILES, EXCLUDED_IMAGES)
