@@ -590,7 +590,7 @@ python -m venv venv # 1st "venv" is commmand, 2nd venv is name of the virtual en
   On Linux/macOs
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <pre class="shell"><code>source venv/bin/activate</code></pre>
 </div>
@@ -605,7 +605,7 @@ python -m venv venv # 1st "venv" is commmand, 2nd venv is name of the virtual en
   On Windows
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <pre class="shell"><code>venv\Scripts\activate</code></pre>
 <p>If you’re using Git Bash on Windows, you need to add the source
@@ -636,7 +636,7 @@ python -m pip install --upgrade pip</code></pre>
   On Linux/macOs
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <pre class="shell"><code> # Use python or py instead if one of them points to 3.11.9.
 python3 -m pip install jupyter seaborn scikit-learn pandas tensorflow pydot</code></pre>
@@ -658,7 +658,7 @@ forum</a>.</p>
   On Windows
   </h3>
 </button>
-<div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
+<div id="collapseSpoiler4" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler4" aria-labelledby="headingSpoiler4">
 <div class="accordion-body">
 <pre class="shell"><code># Use py or python3 instead if one of them points to 3.11.9.
 python -m pip install jupyter seaborn scikit-learn pandas tensorflow pydot </code></pre>
@@ -685,27 +685,41 @@ created for this course, and type the command:</p>
 </section><section><h2 class="section-heading" id="check-your-setup">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a></h2>
 <hr class="half-width"><p>To check whether all packages installed correctly, start a jupyter
 notebook in jupyter lab as explained above (<strong>with virtual
-environment activated</strong>). Run the following lines of code:</p>
+environment activated</strong>). Run the following check to verify you
+have the right version of Python configured.</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="op">!</span>python <span class="op">--</span>version</span></code></pre>
+</div>
+<p>If you don’t see 3.11.9, make sure your virtual environment was
+activated prior to launching Jupyter Lab.</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Python 3.11.9 </code></pre>
+</div>
+<p>Then, run the following lines of code:</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
 </div>
 <p>This should output the versions of all required packages without
-giving errors. Most versions will work fine with this lesson, but: - For
-Keras and Tensorflow, the minimum version is 2.12.0 - For sklearn, the
-minimum version is 1.2.2</p>
-</section><section><h2 class="section-heading" id="fallback-option-cloud-environment">Fallback option: cloud environment<a class="anchor" aria-label="anchor" href="#fallback-option-cloud-environment"></a></h2>
+giving errors. Most versions will work fine with this lesson, but:</p>
+<ul><li>For Keras and Tensorflow, the minimum version is 2.12.0</li>
+<li>For sklearn, the minimum version is 1.2.2</li>
+</ul></section><section><h2 class="section-heading" id="fallback-option-cloud-environment">Fallback option: cloud environment<a class="anchor" aria-label="anchor" href="#fallback-option-cloud-environment"></a></h2>
 <hr class="half-width"><p>If a local installation does not work for you, it is also possible to
 run this lesson in <a href="https://mybinder.org/v2/gh/carpentries-incubator/deep-learning-intro/scaffolds" class="external-link">Binder
 Hub</a>. This should give you an environment with all the required
