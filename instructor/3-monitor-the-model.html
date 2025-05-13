@@ -640,12 +640,12 @@ encoding. Now we want to work on a <em>regression task</em>, thus not
 predicting a class label (or integer number) for a datapoint. In
 regression, we predict one (and sometimes many) values of a feature.
 This is typically a floating point number.</p>
-<div id="exercise-architecture-of-the-network" class="callout challenge">
+<div id="architecture-of-the-network" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-architecture-of-the-network" class="callout-inner">
-<h3 class="callout-title">Exercise: Architecture of the network</h3>
+<div id="architecture-of-the-network" class="callout-inner">
+<h3 class="callout-title">Architecture of the network</h3>
 <div class="callout-content">
 <p>As we want to design a neural network architecture for a regression
 task, see if you can first come up with the answers to the following
@@ -790,12 +790,12 @@ learning step. In practice, in each learning step we only use a subset
 of the training data to compute the loss and the gradients. This subset
 is called a ‘batch’, the number of samples in one batch is called the
 ‘batch size’.</p>
-<div id="exercise-gradient-descent" class="callout challenge">
+<div id="gradient-descent-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-gradient-descent" class="callout-inner">
-<h3 class="callout-title">Exercise: Gradient descent</h3>
+<div id="gradient-descent-1" class="callout-inner">
+<h3 class="callout-title">Gradient descent</h3>
 <div class="callout-content">
 <p>Answer the following questions:</p>
 <div class="section level3">
@@ -1040,12 +1040,12 @@ reference to their ground truth values.</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>plot_predictions(y_test_predicted, y_test, title<span class="op">=</span><span class="st">'Predictions on the test set'</span>)</span></code></pre>
 </div>
-<figure><img src="../fig/03_regression_predictions_testset.png" alt="Scatter plot between predictions and true sunshine hours in Basel on the test set showing a wide spread" class="figure mx-auto d-block"></figure><div id="exercise-reflecting-on-our-results" class="callout challenge">
+<figure><img src="../fig/03_regression_predictions_testset.png" alt="Scatter plot between predictions and true sunshine hours in Basel on the test set showing a wide spread" class="figure mx-auto d-block"></figure><div id="reflecting-on-our-results" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-reflecting-on-our-results" class="callout-inner">
-<h3 class="callout-title">Exercise: Reflecting on our results</h3>
+<div id="reflecting-on-our-results" class="callout-inner">
+<h3 class="callout-title">Reflecting on our results</h3>
 <div class="callout-content">
 <ul><li>Is the performance of the model as you expected (or
 better/worse)?</li>
@@ -1169,12 +1169,12 @@ Neural network:  4.077792167663574</code></pre>
 </div>
 <p>Judging from the numbers alone, our neural network prediction would
 be performing worse than the baseline.</p>
-<div id="exercise-baseline" class="callout challenge">
+<div id="baseline" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-baseline" class="callout-inner">
-<h3 class="callout-title">Exercise: Baseline</h3>
+<div id="baseline" class="callout-inner">
+<h3 class="callout-title">Baseline</h3>
 <div class="callout-content">
 <ol style="list-style-type: decimal"><li>Looking at this baseline: Would you consider this a simple or a hard
 problem to solve?</li>
@@ -1261,12 +1261,12 @@ on the validation data!</p>
 </h3>
 <pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a>plot_history(history, [<span class="st">'root_mean_squared_error'</span>, <span class="st">'val_root_mean_squared_error'</span>])</span></code></pre>
 </div>
-<figure><img src="../fig/03_training_history_2_rmse.png" alt="Plot of RMSE vs epochs for the training set and the validation set which depicts a divergence between the two around 10 epochs." class="figure mx-auto d-block"></figure><div id="exercise-plot-the-training-progress." class="callout challenge">
+<figure><img src="../fig/03_training_history_2_rmse.png" alt="Plot of RMSE vs epochs for the training set and the validation set which depicts a divergence between the two around 10 epochs." class="figure mx-auto d-block"></figure><div id="plot-the-training-progress." class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-plot-the-training-progress." class="callout-inner">
-<h3 class="callout-title">Exercise: plot the training progress.</h3>
+<div id="plot-the-training-progress." class="callout-inner">
+<h3 class="callout-title">Plot the training progress.</h3>
 <div class="callout-content">
 <ol style="list-style-type: decimal"><li>Is there a difference between the training curves of training versus
 validation data? And if so, what would this imply?</li>
@@ -1302,12 +1302,12 @@ consistently stay at 0.</p>
 <p>Overfitting is a very common issue and there are many strategies to
 handle it. Most similar to classical machine learning might to
 <strong>reduce the number of parameters</strong>.</p>
-<div id="exercise-try-to-reduce-the-degree-of-overfitting-by-lowering-the-number-of-parameters" class="callout challenge">
+<div id="try-to-reduce-the-degree-of-overfitting-by-lowering-the-number-of-parameters" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-try-to-reduce-the-degree-of-overfitting-by-lowering-the-number-of-parameters" class="callout-inner">
-<h3 class="callout-title">Exercise: Try to reduce the degree of overfitting by lowering the number of parameters</h3>
+<div id="try-to-reduce-the-degree-of-overfitting-by-lowering-the-number-of-parameters" class="callout-inner">
+<h3 class="callout-title">Try to reduce the degree of overfitting by lowering the number of parameters</h3>
 <div class="callout-content">
 <p>We can keep the network architecture unchanged (2 dense layers + a
 one-node output layer) and only play with the number of nodes per layer.
@@ -1584,12 +1584,12 @@ again plot the results on the test set:</p>
 this? Maybe not good enough to plan your picnic for tomorrow. But let’s
 better compare it to the naive baseline we created in the beginning.
 What would you say, did we improve on that?</p>
-<div id="exercise-simplify-the-model-and-add-data" class="callout challenge">
+<div id="simplify-the-model-and-add-data" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-simplify-the-model-and-add-data" class="callout-inner">
-<h3 class="callout-title">Exercise: Simplify the model and add data</h3>
+<div id="simplify-the-model-and-add-data" class="callout-inner">
+<h3 class="callout-title">Simplify the model and add data</h3>
 <div class="callout-content">
 <p>You may have been wondering why we are including weather observations
 from multiple cities to predict sunshine hours only in Basel. The
