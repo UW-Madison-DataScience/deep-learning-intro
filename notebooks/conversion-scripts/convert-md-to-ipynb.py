@@ -1,5 +1,15 @@
 
 def preprocess_markdown(md_content):
+    # Normalize ::: questions/objectives/keypoints blocks
+    header_block_pattern = re.compile(
+        r"^:{2,}\s*(questions|objectives|keypoints)\s*\n+(.*?)(?=^:{2,}\s*$)",
+        re.MULTILINE | re.DOTALL | re.IGNORECASE
+    )
+    def header_repl(match):
+        heading = match.group(1).capitalize()
+        body = match.group(2).strip()
+        return f"## {heading}\n\n{body}"
+    md_content = re.sub(header_block_pattern, header_repl, md_content)
     # Step 1: Remove ::: solution blocks and their contents
     md_content = re.sub(r"^:::*\s*solution\s*\n.*?^:::*\s*$", "", md_content, flags=re.MULTILINE | re.DOTALL | re.IGNORECASE)
 
