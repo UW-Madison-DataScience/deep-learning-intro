@@ -4,6 +4,9 @@ import nbformat as nbf
 import argparse
 
 def preprocess_markdown(md_content):
+    # Remove ```output blocks
+    md_content = re.sub(r"```output\n.*?\n```", "", md_content, flags=re.DOTALL)
+
     # Normalize ::: questions/objectives/keypoints blocks
     header_block_pattern = re.compile(
         r"^:{2,}\s*(questions|objectives|keypoints)\s*\n+(.*?)(?=^:{2,}\s*$)",
@@ -18,7 +21,7 @@ def preprocess_markdown(md_content):
     # Remove ::: solution blocks and their contents
     md_content = re.sub(r"^:::*\s*solution\s*\n.*?^:::*\s*$", "", md_content, flags=re.MULTILINE | re.DOTALL | re.IGNORECASE)
 
-    # Transform ::: callout, challenge, discussion blocks with headers into markdown headings
+    # Transform ::: callout, challenge, discussion blocks
     pattern = re.compile(
         r"^:::*\s*(callout|challenge|discussion)\s*\n+##\s*(.*?)\n+(.*?)(?=^:::*\s*$)",
         re.MULTILINE | re.DOTALL | re.IGNORECASE
@@ -32,6 +35,7 @@ def preprocess_markdown(md_content):
 
     # Remove orphaned alt text lines
     md_content = re.sub(r'^\{alt=.*?\}\s*$', '', md_content, flags=re.MULTILINE)
+
     return md_content
 
 def md_to_notebook(md_file, notebook_file, base_image_url, excluded_figs=None):
