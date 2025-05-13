@@ -30,7 +30,27 @@ def md_to_notebook(md_file, notebook_file, base_image_url):
     # Remove the YAML front matter
     md_content = re.sub(r'^---.*?---', '', md_content, flags=re.DOTALL | re.MULTILINE)
 
-    # Replace local image paths with URLs
+    
+    # Handle reference-style image definitions like:
+    # [penguin]: fig/penguin.png
+    ref_image_map = {}
+    ref_pattern = re.compile(r'^\[([^\]]+)]\s*:\s*(\S+)', re.MULTILINE)
+    for match in ref_pattern.finditer(md_content):
+        label, path = match.groups()
+        ref_image_map[label] = f"{base_image_url}/{path.strip()}"
+
+    def replace_reference_images(match):
+        alt_text = match.group(1)
+        label = match.group(2)
+        url = ref_image_map.get(label)
+        return f"![{alt_text}]({url})" if url else match.group(0)
+
+    md_content = re.sub(r'!\[([^\]]+)]\[([^\]]+)]', replace_reference_images, md_content)
+
+    # Remove reference definitions from the bottom of the file
+    md_content = re.sub(r'^\[([^\]]+)]\s*:\s*\S+.*$', '', md_content, flags=re.MULTILINE)
+
+# Replace local image paths with URLs
     def replace_image_path(match):
         alt_text = match.group(1)
         image_path = match.group(2)
