@@ -494,33 +494,83 @@ any links that you are not going to use.
  --></tbody></table><p>
       The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
       </p>
-      </section><section id="setup"><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
-<hr class="half-width"><div id="installing-python" class="callout discussion">
+      </section><section id="setup"><section><h2 class="section-heading" id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a></h2>
+<hr class="half-width"><p>The setup steps below will help you prepare a folder for the
+workshop, install Python and the needed libraries in a virtual
+environment, and download the data we’ll be exploring.</p>
+</section><section><h2 class="section-heading" id="setup-workshop-folder">1. Setup workshop folder<a class="anchor" aria-label="anchor" href="#setup-workshop-folder"></a></h2>
+<hr class="half-width"><p>Create a folder on your desktop called <code>dl_workshop</code> for
+storing the workshop data and required packages.</p>
+<pre class="shell"><code>cd ~/Desktop
+mkdir dl_workshop
+cd dl_workshop
+pwd </code></pre>
+<div id="installing-python" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <div id="installing-python" class="callout-inner">
-<h3 class="callout-title">Installing Python</h3>
+<h3 class="callout-title">2. Installing Python</h3>
 <div class="callout-content">
 <p><a href="https://python.org" class="external-link">Python</a> is a popular language for
-scientific computing, and a frequent choice for machine learning as
-well. To install Python, follow the <a href="https://wiki.python.org/moin/BeginnersGuide/Download" class="external-link">Beginner’s
-Guide</a> or head straight to the <a href="https://www.python.org/downloads/" class="external-link">download page</a>.</p>
-<p>Please set up your python environment at least a day in advance of
-the workshop. If you encounter problems with the installation procedure,
-ask your workshop organizers via e-mail for assistance so you are ready
-to go as soon as the workshop begins.</p>
+scientific computing and a frequent choice for machine learning.</p>
+<p>Python version requirement: This workshop requires Python 3.11.9.
+Newer versions like 3.12 or 3.13 are not yet fully compatible with
+TensorFlow and may cause issues. Even Python 3.11.9 may have some edge
+cases, but it works well enough to be the default in Google Colab and is
+stable for the purposes of this workshop.</p>
+<p>To install Python 3.11.9, go to the <a href="https://www.python.org/downloads/release/python-3119//" class="external-link">official
+3.11.9 downloads page</a>. Choose the installer that matches your
+operating system (Windows, macOS, or Linux).</p>
+<p>Please set up your Python environment at least a day in advance of
+the workshop. If you run into issues with installation, contact the
+workshop organizers by email so you’re ready to begin on time.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="packages">Installing the required packages<a class="anchor" aria-label="anchor" href="#packages"></a></h2>
+</section><section><h2 class="section-heading" id="determine-which-python-command-to-use-for-downstream-setup-steps">3. Determine which <code>python</code> command to use for downstream
+setup steps<a class="anchor" aria-label="anchor" href="#determine-which-python-command-to-use-for-downstream-setup-steps"></a></h2>
+<hr class="half-width"><p>Different systems and Python installations (e.g., Anaconda, Git Bash,
+system Python, Windows Store, etc.) may register different command
+names. This quick check helps identify which one points to Python 3.11.9
+on your machine.</p>
+<p>Run the following in your terminal (Git Bash, Anaconda Prompt, or
+macOS/Linux shell):</p>
+<pre class="shell"><code><span><span class="va">python</span> <span class="op">-</span><span class="op">-</span><span class="va">version</span></span>
+<span><span class="va">py</span> <span class="op">-</span><span class="op">-</span><span class="va">version</span></span>
+<span><span class="va">python3</span> <span class="op">-</span><span class="op">-</span><span class="va">version</span></span></code></pre>
+<p>Use whichever one returns Python 3.11.9 for the rest of the setup
+steps.</p>
+<p>Example output:</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>$ python --version
+Python 3.11.9
+
+$ py --version
+Python 3.13.2
+
+$ python3 --version
+Python was not found...</code></pre>
+</div>
+<p>In this case, use python throughout the remainder of the
+instructions.</p>
+<p>If none of the commands return Python 3.11.9:</p>
+<ul><li>Download and install Python 3.11.9</li>
+<li>On Windows, be sure to check “Add Python to PATH” during
+installation</li>
+<li>Then re-run the checks above in a new terminal window</li>
+</ul><p>If you’re still stuck, ask the workshop organizers for help before
+proceeding.</p>
+</section><section><h2 class="section-heading" id="packages">4. Installing the required packages<a class="anchor" aria-label="anchor" href="#packages"></a></h2>
 <hr class="half-width"><p><a href="https://pip.pypa.io/en/stable/" class="external-link">Pip</a> is the package
 management system built into Python. Pip should be available in your
 system once you installed Python successfully.</p>
 <p>Open a terminal (Mac/Linux) or Command Prompt (Windows) and run the
 following commands.</p>
 <ol style="list-style-type: decimal"><li>Create a <a href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#create-and-use-virtual-environments" class="external-link">virtual
-environment</a> called <code>dl_workshop</code>:</li>
+environment</a> called <code>venv</code> using the “venv” command:</li>
 </ol><div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
@@ -531,7 +581,7 @@ environment</a> called <code>dl_workshop</code>:</li>
 </button>
 <div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
-<pre class="shell"><code>python3 -m venv dl_workshop</code></pre>
+<pre class="shell"><code>python3 -m venv venv # Use python or py instead if one of them points to 3.11.9.</code></pre>
 </div>
 </div>
 </div>
@@ -546,10 +596,19 @@ environment</a> called <code>dl_workshop</code>:</li>
 </button>
 <div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
-<pre class="shell"><code>py -m venv dl_workshop</code></pre>
+<pre class="shell"><code>py -m venv venv  # Use python3 or python instead if one of them points to 3.11.9.</code></pre>
 </div>
 </div>
 </div>
+</div>
+<p>If you run the <code>ls</code> command from
+<code>~/Desktop/dl_workshop</code>, you should see a new
+<code>venv</code> folder inside it</p>
+<pre class="shell"><code><span><span class="va">ls</span></span></code></pre>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>venv/</code></pre>
 </div>
 <ol start="2" style="list-style-type: decimal"><li>Activate the newly created virtual environment:</li>
 </ol><div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
@@ -562,7 +621,7 @@ environment</a> called <code>dl_workshop</code>:</li>
 </button>
 <div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
-<pre class="shell"><code>source dl_workshop/bin/activate</code></pre>
+<pre class="shell"><code>source venv/bin/activate</code></pre>
 </div>
 </div>
 </div>
@@ -577,14 +636,22 @@ environment</a> called <code>dl_workshop</code>:</li>
 </button>
 <div id="collapseSpoiler4" class="accordion-collapse collapse" aria-labelledby="headingSpoiler4" data-bs-parent="#accordionSpoiler4">
 <div class="accordion-body">
-<pre class="shell"><code>dl_workshop\Scripts\activate</code></pre>
+<pre class="shell"><code>venv\Scripts\activate</code></pre>
+<p>If you’re using Git Bash on Windows, you need to add the source
+command first.</p>
+<pre class="shell"><code>source venv/Scripts/activate</code></pre>
 </div>
 </div>
 </div>
 </div>
-<p>Remember that you need to activate your environment every time you
-restart your terminal!</p>
-<ol start="3" style="list-style-type: decimal"><li>Install the required packages:</li>
+<p><strong>Note</strong>: Remember that you need to activate your
+environment every time you restart your terminal, and before you launch
+Jupyter Lab!</p>
+<ol start="3" style="list-style-type: decimal"><li>Upgrade pip before installing other packages. This is a good
+practice to follow when you first initialize your virtual
+environment.</li>
+</ol><pre class="shell"><code>python -m pip install --upgrade pip # remember: use python3 or py instead if it points to 3.11.9</code></pre>
+<ol start="4" style="list-style-type: decimal"><li>Install the required packages:</li>
 </ol><div id="accordionSpoiler5" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler5" aria-expanded="false" aria-controls="collapseSpoiler5">
@@ -595,7 +662,7 @@ restart your terminal!</p>
 </button>
 <div id="collapseSpoiler5" class="accordion-collapse collapse" aria-labelledby="headingSpoiler5" data-bs-parent="#accordionSpoiler5">
 <div class="accordion-body">
-<pre class="shell"><code>python3 -m pip install jupyter seaborn scikit-learn pandas tensorflow pydot</code></pre>
+<pre class="shell"><code>python3 -m pip install jupyter seaborn scikit-learn pandas tensorflow pydot # Use python or py instead if one of them points to 3.11.9.</code></pre>
 <p>Note for MacOS users: there is a package
 <code>tensorflow-metal</code> which accelerates the training of machine
 learning models with TensorFlow on a recent Mac with a Silicon chip
@@ -616,7 +683,7 @@ forum</a>.</p>
 </button>
 <div id="collapseSpoiler6" class="accordion-collapse collapse" aria-labelledby="headingSpoiler6" data-bs-parent="#accordionSpoiler6">
 <div class="accordion-body">
-<pre class="shell"><code>py -m pip install jupyter seaborn scikit-learn pandas tensorflow pydot</code></pre>
+<pre class="shell"><code>py -m pip install jupyter seaborn scikit-learn pandas tensorflow pydot # Use python or python3 instead if one of them points to 3.11.9.</code></pre>
 </div>
 </div>
 </div>
@@ -641,20 +708,20 @@ created for this course, and type the command:</p>
 <hr class="half-width"><p>To check whether all packages installed correctly, start a jupyter
 notebook in jupyter lab as explained above. Run the following lines of
 code:</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
 </div>
 <p>This should output the versions of all required packages without
 giving errors. Most versions will work fine with this lesson, but: - For
