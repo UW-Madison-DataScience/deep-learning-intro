@@ -1,5 +1,15 @@
 import os
 import re
+
+def remove_remaining_colons(notebook_path):
+    import nbformat as nbf
+    nb = nbf.read(notebook_path, as_version=4)
+    for cell in nb.cells:
+        if cell.cell_type == "markdown":
+            cell.source = cell.source.replace(":::", "").strip()
+    nbf.write(nb, notebook_path)
+
+
 import nbformat as nbf
 import argparse
 
@@ -170,6 +180,9 @@ def md_to_notebook(md_file, notebook_file, base_image_url, excluded_figs=None):
     with open(notebook_file, 'w', encoding='utf-8') as file:
         nbf.write(nb, file)
     insert_blank_cells_after_markers(notebook_file)
+    remove_remaining_colons(notebook_file)
+    remove_remaining_colons(notebook_file)
+    remove_remaining_colons(notebook_file)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -205,4 +218,14 @@ def insert_blank_cells_after_markers(notebook_path):
         else:
             new_cells.append(cell)
     nb.cells = new_cells
+    nbf.write(nb, notebook_path)
+
+
+
+def remove_remaining_colons(notebook_path):
+    import nbformat as nbf
+    nb = nbf.read(notebook_path, as_version=4)
+    for cell in nb.cells:
+        if cell.cell_type == "markdown":
+            cell.source = cell.source.replace(":::", "").strip()
     nbf.write(nb, notebook_path)
