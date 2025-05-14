@@ -21,6 +21,9 @@ def preprocess_markdown(md_content):
     # Remove ::: solution blocks and their contents
     md_content = re.sub(r"^:::*\s*solution\s*\n.*?^:::*\s*$", "", md_content, flags=re.MULTILINE | re.DOTALL | re.IGNORECASE)
 
+    # Remove ::: instructor blocks and their contents
+    md_content = re.sub(r"^:::*\s*instructor\s*\n.*?^:::*\s*$", "", md_content, flags=re.MULTILINE | re.DOTALL | re.IGNORECASE)
+
     # Transform ::: callout, challenge, discussion blocks
     pattern = re.compile(
         r"^:::*\s*(callout|challenge|discussion)\s*\n+##\s*(.*?)\n+(.*?)(?=^:::*\s*$)",
