@@ -208,9 +208,6 @@
 <li><a href="#setup-workshop-folder">1. Setup workshop folder</a></li>
 <li><a href="#installing-python">2. Installing Python</a></li>
 <li><a href="#configure-virtual-environment">3. Configure virtual environment</a></li>
-<li><a href="#starting-jupyter-lab">Starting Jupyter Lab</a></li>
-<li><a href="#check-your-setup">Check your setup</a></li>
-<li><a href="#fallback-option-cloud-environment">Fallback option: cloud environment</a></li>
 <li><a href="#downloading-the-required-datasets">4. Downloading the required datasets</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -365,7 +362,7 @@ concepts: Data cleaning, train &amp; test split, type of problems
   Other related lessons
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <div class="section level4">
 <h4 id="introduction-to-artificial-neural-networks-in-python">Introduction to artificial neural networks in Python<a class="anchor" aria-label="anchor" href="#introduction-to-artificial-neural-networks-in-python"></a></h4>
@@ -614,8 +611,9 @@ python -m pip install jupyter seaborn scikit-learn pandas tensorflow pydot </cod
 requires installation of Graphviz and instructions for doing that can be
 found <a href="https://graphviz.org/download/" class="external-link">by following this
 link</a>.</p>
-</section><section><h2 class="section-heading" id="starting-jupyter-lab">Starting Jupyter Lab<a class="anchor" aria-label="anchor" href="#starting-jupyter-lab"></a></h2>
-<hr class="half-width"><p>We will teach using Python in <a href="http://jupyter.org/" class="external-link">Jupyter
+<div class="section level3">
+<h3 id="starting-jupyter-lab">Starting Jupyter Lab<a class="anchor" aria-label="anchor" href="#starting-jupyter-lab"></a></h3>
+<p>We will teach using Python in <a href="http://jupyter.org/" class="external-link">Jupyter
 Lab</a>, a programming environment that runs in a web browser. Jupyter
 Lab is compatible with Firefox, Chrome, Safari and Chromium-based
 browsers. Note that Internet Explorer and Edge are <em>not</em>
@@ -625,8 +623,10 @@ Lab documentation</a> for an up-to-date list of supported browsers.</p>
 (Windows), make sure that you activated the virtual environment you
 created for this course, and type the command:</p>
 <pre class="shell"><code>jupyter lab</code></pre>
-</section><section><h2 class="section-heading" id="check-your-setup">Check your setup<a class="anchor" aria-label="anchor" href="#check-your-setup"></a></h2>
-<hr class="half-width"><p>To check whether all packages installed correctly, start a jupyter
+</div>
+<div class="section level3">
+<h3 id="check-your-virtual-software-setup">Check your virtual software setup<a class="anchor" aria-label="anchor" href="#check-your-virtual-software-setup"></a></h3>
+<p>To check whether all packages installed correctly, start a jupyter
 notebook in jupyter lab as explained above (<strong>with virtual
 environment activated</strong>). Run the following check to verify you
 have the right version of Python configured.</p>
@@ -662,8 +662,10 @@ activated prior to launching Jupyter Lab.</p>
 giving errors. Most versions will work fine with this lesson, but:</p>
 <ul><li>For Keras and Tensorflow, the minimum version is 2.12.0</li>
 <li>For sklearn, the minimum version is 1.2.2</li>
-</ul></section><section><h2 class="section-heading" id="fallback-option-cloud-environment">Fallback option: cloud environment<a class="anchor" aria-label="anchor" href="#fallback-option-cloud-environment"></a></h2>
-<hr class="half-width"><p>If a local installation does not work for you, it is also possible to
+</ul></div>
+<div class="section level3">
+<h3 id="fallback-option-cloud-environment">Fallback option: cloud environment<a class="anchor" aria-label="anchor" href="#fallback-option-cloud-environment"></a></h3>
+<p>If a local installation does not work for you, it is also possible to
 run this lesson in <a href="https://mybinder.org/v2/gh/carpentries-incubator/deep-learning-intro/scaffolds" class="external-link">Binder
 Hub</a>. This should give you an environment with all the required
 software and data to run this lesson, nothing which is saved will be
@@ -676,6 +678,7 @@ start it themselves shortly before the workshop begins.</p>
 a jupyter notebook here, the required packages are already
 pre-installed. Note that google colab uses jupyter notebook instead of
 Jupyter Lab.</p>
+</div>
 </section><section><h2 class="section-heading" id="downloading-the-required-datasets">4. Downloading the required datasets<a class="anchor" aria-label="anchor" href="#downloading-the-required-datasets"></a></h2>
 <hr class="half-width"><p>Download the <a href="https://zenodo.org/record/5071376/files/weather_prediction_dataset_light.csv?download=1" class="external-link">weather
 dataset prediction csv</a> and <a href="https://zenodo.org/api/records/10970014/files-archive" class="external-link">Dollar
