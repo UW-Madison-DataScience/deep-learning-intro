@@ -33,10 +33,7 @@ def preprocess_markdown(md_content):
         block_type = match.group(1).capitalize()
         heading = match.group(2).strip()
         body = match.group(3).strip()
-        result = f"## {block_type}: {heading}\n\n{body}"
-        if block_type == "Challenge":
-            result += "\n\n<!-- __BLANK_CODE_CELL__ -->"
-        return result
+        return f"## {block_type}: {heading}\n\n{body}"
     md_content = re.sub(pattern, repl, md_content)
 
     # Remove orphaned alt text lines
@@ -104,12 +101,6 @@ def md_to_notebook(md_file, notebook_file, base_image_url, excluded_figs=None):
             buffer.clear()
 
     for i in range(len(lines)):
-        # Insert blank code cell after challenge block marker
-        if stripped == "<!-- __BLANK_CODE_CELL__ -->":
-            process_buffer(text_buffer, "markdown")
-            cells.append(nbf.v4.new_code_cell(""))  # blank cell for learner
-            continue
-
         line = lines[i]
         stripped = line.strip()
 
