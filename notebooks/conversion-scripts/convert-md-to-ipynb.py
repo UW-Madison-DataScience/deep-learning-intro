@@ -1,5 +1,15 @@
 import os
 import re
+
+def remove_remaining_colons(notebook_path):
+    import nbformat as nbf
+    nb = nbf.read(notebook_path, as_version=4)
+    for cell in nb.cells:
+        if cell.cell_type == "markdown":
+            cell.source = cell.source.replace(":::", "").strip()
+    nbf.write(nb, notebook_path)
+
+
 import nbformat as nbf
 import argparse
 
@@ -33,13 +43,40 @@ def preprocess_markdown(md_content):
         block_type = match.group(1).capitalize()
         heading = match.group(2).strip()
         body = match.group(3).strip()
-        return f"## {block_type}: {heading}\n\n{body}"
+        result = f"## {block_type}: {heading}\n\n{body}"
+        if block_type.lower() == "challenge":
+            result += "\n\n<!-- BLANK_CELL_HERE -->"
+        return result
+
+
+
     md_content = re.sub(pattern, repl, md_content)
 
     # Remove orphaned alt text lines
     md_content = re.sub(r'^\{alt=.*?\}\s*$', '', md_content, flags=re.MULTILINE)
 
     return md_content
+
+
+def insert_blank_cells_after_markers(notebook_path):
+    import nbformat as nbf
+    nb = nbf.read(notebook_path, as_version=4)
+    new_cells = []
+    for cell in nb.cells:
+        if cell.cell_type == "markdown" and "<!-- BLANK_CELL_HERE -->" in cell.source:
+            parts = cell.source.split("<!-- BLANK_CELL_HERE -->")
+            before = parts[0].strip()
+            after = parts[1].strip() if len(parts) > 1 else ""
+            if before:
+                new_cells.append(nbf.v4.new_markdown_cell(before))
+            new_cells.append(nbf.v4.new_code_cell(""))
+            if after and after != ":::":  # ignore leftover :::
+                new_cells.append(nbf.v4.new_markdown_cell(after))
+        else:
+            new_cells.append(cell)
+    nb.cells = new_cells
+    nbf.write(nb, notebook_path)
+
 
 def md_to_notebook(md_file, notebook_file, base_image_url, excluded_figs=None):
     with open(md_file, 'r', encoding='utf-8') as file:
@@ -125,6 +162,21 @@ def md_to_notebook(md_file, notebook_file, base_image_url, excluded_figs=None):
                     lines[i + 1] = ''
                 continue
 
+        
+        if stripped == '<!-- BLANK_CELL_HERE -->':
+            if i + 1 < len(lines) and lines[i + 1].strip() == ':::':
+                i += 1  # skip :::
+            process_buffer(text_buffer, "markdown")
+            cells.append(nbf.v4.new_code_cell(""))  # blank code cell
+            continue
+
+        if stripped == '<!-- BLANK_CELL_HERE -->':
+            if i + 1 < len(lines) and lines[i + 1].strip() == ':::':
+                i += 1  # skip :::
+            process_buffer(text_buffer, "markdown")
+            cells.append(nbf.v4.new_code_cell(""))  # blank code cell
+            continue
+
         text_buffer.append(line)
 
     process_buffer(text_buffer, "markdown")
@@ -133,6 +185,10 @@ def md_to_notebook(md_file, notebook_file, base_image_url, excluded_figs=None):
 
     with open(notebook_file, 'w', encoding='utf-8') as file:
         nbf.write(nb, file)
+    insert_blank_cells_after_markers(notebook_file)
+    remove_remaining_colons(notebook_file)
+    remove_remaining_colons(notebook_file)
+    remove_remaining_colons(notebook_file)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -148,3 +204,34 @@ if __name__ == "__main__":
     os.makedirs(args.output_dir, exist_ok=True)
 
     md_to_notebook(input_path, output_path, args.base_image_url, excluded_figs=args.exclude_images)
+
+
+
+def insert_blank_cells_after_markers(notebook_path):
+    import nbformat as nbf
+    nb = nbf.read(notebook_path, as_version=4)
+    new_cells = []
+    for cell in nb.cells:
+        if cell.cell_type == "markdown" and "<!-- BLANK_CELL_HERE -->" in cell.source:
+            parts = cell.source.split("<!-- BLANK_CELL_HERE -->")
+            before = parts[0].strip()
+            after = parts[1].strip() if len(parts) > 1 else ""
+            if before:
+                new_cells.append(nbf.v4.new_markdown_cell(before))
+            new_cells.append(nbf.v4.new_code_cell(""))
+            if after and after != ":::":  # ignore leftover ::: completely
+                new_cells.append(nbf.v4.new_markdown_cell(after))
+        else:
+            new_cells.append(cell)
+    nb.cells = new_cells
+    nbf.write(nb, notebook_path)
+
+
+
+def remove_remaining_colons(notebook_path):
+    import nbformat as nbf
+    nb = nbf.read(notebook_path, as_version=4)
+    for cell in nb.cells:
+        if cell.cell_type == "markdown":
+            cell.source = cell.source.replace(":::", "").strip()
+    nbf.write(nb, notebook_path)
