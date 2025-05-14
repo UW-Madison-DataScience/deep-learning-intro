@@ -43,7 +43,13 @@ def preprocess_markdown(md_content):
         block_type = match.group(1).capitalize()
         heading = match.group(2).strip()
         body = match.group(3).strip()
-        return f"## {block_type}: {heading}\n\n{body}\n\n<!-- BLANK_CELL_HERE -->"
+        result = f"## {block_type}: {heading}\n\n{body}"
+        if block_type.lower() == "challenge":
+            result += "\n\n<!-- BLANK_CELL_HERE -->"
+        return result
+
+
+
     md_content = re.sub(pattern, repl, md_content)
 
     # Remove orphaned alt text lines
