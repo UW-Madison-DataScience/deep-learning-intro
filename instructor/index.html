@@ -358,7 +358,7 @@ concepts: Data cleaning, train &amp; test split, type of problems
   Other related lessons
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <div class="section level4">
 <h4 id="introduction-to-artificial-neural-networks-in-python">Introduction to artificial neural networks in Python<a class="anchor" aria-label="anchor" href="#introduction-to-artificial-neural-networks-in-python"></a></h4>
@@ -432,7 +432,7 @@ research.</p>
   We can help you out with teaching this lesson
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Do you want to teach this lesson? Find more help in the <a href="https://github.com/carpentries-lab/deep-learning-intro?tab=readme-ov-file#teaching-this-lesson" class="external-link">README</a>
 Feel free to reach out to us with any questions that you have. Just open
@@ -449,7 +449,7 @@ a new issue. We also value any feedback on the lesson!</p>
   Breaks and Schedule
   </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p>Episode 2, 3, and 4 in this lesson are relatively long. We suggest to
 have a break at least every 90 minutes and to switch the instructor
@@ -792,8 +792,40 @@ Jupyter Lab.</p>
 </section><section><h2 class="section-heading" id="downloading-the-required-datasets">4. Downloading the required datasets<a class="anchor" aria-label="anchor" href="#downloading-the-required-datasets"></a></h2>
 <hr class="half-width"><p>Download the <a href="https://zenodo.org/record/5071376/files/weather_prediction_dataset_light.csv?download=1" class="external-link">weather
 dataset prediction csv</a> and <a href="https://zenodo.org/api/records/10970014/files-archive" class="external-link">Dollar
-street dataset (4 files in total)</a>. Move these files to your workshop
-folder, <code>~/Desktop/dl_workshop/</code>.</p>
+street dataset (4 files in total)</a>. Create a subfolder in your
+workshop folder called data, <code>~/Desktop/dl_workshop/data</code>,
+and move all 5 files to the data subfolder:</p>
+<ul><li><code>dl_workshop/data/weather_prediction_dataset_light.csv</code></li>
+<li>
+<code>dl_workshop/data/</code>train_labels.npy`</li>
+<li>
+<code>dl_workshop/data/</code>test_labels.npy`</li>
+<li>
+<code>dl_workshop/data/</code>train_images.npy`</li>
+<li>
+<code>dl_workshop/data/</code>test_images.npy`</li>
+</ul><p><strong>Note</strong>: If you end up using Google Colab for the
+workshop, you’ll want to upload your <code>dl_workshop</code> folder to
+your Google drive. You can access files from Google drive using Colab
+and the following code:</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>drive.mount(<span class="st">'/content/drive'</span>)</span></code></pre>
+</div>
+<p>A prompt will appear asking you to authorize access to your Google
+Drive. After authorization, your Drive will be accessible under
+<code>/content/drive/My Drive/</code>. You can use standard Python I/O
+or libraries like pandas, os, glob, etc. to interact with files. Example
+below:</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="co"># Load a CSV file from Drive</span></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'/content/drive/My Drive/dl_workshop/data/weather_prediction_dataset_light.csv'</span>)</span></code></pre>
+</div>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
