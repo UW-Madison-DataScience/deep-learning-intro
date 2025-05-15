@@ -355,7 +355,7 @@ Retrain the model using the same setup as before:
 - Pass in the validation set using `validation_data`
 - Store the result in a new variable called `history_finetune`
 
-> 📝 You can reuse your `early_stopper` callback or redefine it.
+> You can reuse your `early_stopper` callback or redefine it.
 
 ### 4. Compare with baseline (head only)
 Plot the **validation accuracy** for both the baseline and fine-tuned models.
@@ -407,9 +407,33 @@ def plot_two_histories(h1, h2, label1='Frozen', label2='Finetuned'):
 plot_two_histories(history, history_finetune)
 
 ```
+
+![](episodes/fig/05-frozen_vs_finetuned.png)
+
+**Discussion of results**: Validation accuracy improved across all epochs compared to the frozen baseline. Training time also increased slightly, but the model was able to adapt better to the new dataset by fine-tuning the top convolutional block.
+
+This makes sense: by unfreezing the last part of the base model, you're allowing it to adjust high-level features to the new domain, while still keeping the earlier, general-purpose filters/feature-detectors of the model intact.
+
+
+**What happens if you unfreeze too many layers?**
+If you unfreeze most or all of the base model:
+
+- Training time increases significantly because more weights are being updated.
+- The model may forget some of the general-purpose features it learned during pretraining. This is called "catastrophic forgetting."
+- Overfitting becomes more likely, especially if your dataset is small or noisy.
+
+
+### When does this approach work best?
+
+Fine-tuning a few top layers is a good middle ground. You're adapting the model without retraining everything from scratch. If your dataset is small or very different from the original ImageNet data, you should be careful not to unfreeze too many layers.
+
+For most use cases:
+- Freeze most layers
+- Unfreeze the top block or two
+- Avoid full fine-tuning unless you have lots of data and compute
+
 ::::
 :::
-
 
 ## Concluding: The power of transfer learning
 In many domains, large networks are available that have been trained on vast amounts of data, such as in computer vision and natural language processing. Using transfer learning, you can benefit from the knowledge that was captured from another machine learning task. In many fields, transfer learning will outperform models trained from scratch, especially if your dataset is small or of poor quality.
