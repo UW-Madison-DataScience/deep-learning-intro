@@ -832,7 +832,7 @@ recompile</strong> the model.</p>
 <code>history_finetune</code>
 </li>
 </ul><blockquote>
-<p>📝 You can reuse your <code>early_stopper</code> callback or redefine
+<p>You can reuse your <code>early_stopper</code> callback or redefine
 it.</p>
 </blockquote>
 </div>
@@ -894,6 +894,32 @@ significantly? - Is there any evidence of overfitting?</p>
 <span id="cb19-35"><a href="#cb19-35" tabindex="-1"></a>    plt.show()</span>
 <span id="cb19-36"><a href="#cb19-36" tabindex="-1"></a></span>
 <span id="cb19-37"><a href="#cb19-37" tabindex="-1"></a>plot_two_histories(history, history_finetune)</span></code></pre>
+</div>
+<figure><img src="fig/05-frozen_vs_finetuned.png" class="figure mx-auto d-block"></figure><p><strong>Discussion of results</strong>: Validation accuracy improved
+across all epochs compared to the frozen baseline. Training time also
+increased slightly, but the model was able to adapt better to the new
+dataset by fine-tuning the top convolutional block.</p>
+<p>This makes sense: by unfreezing the last part of the base model,
+you’re allowing it to adjust high-level features to the new domain,
+while still keeping the earlier, general-purpose
+filters/feature-detectors of the model intact.</p>
+<p><strong>What happens if you unfreeze too many layers?</strong> If you
+unfreeze most or all of the base model:</p>
+<ul><li>Training time increases significantly because more weights are being
+updated.</li>
+<li>The model may forget some of the general-purpose features it learned
+during pretraining. This is called “catastrophic forgetting.”</li>
+<li>Overfitting becomes more likely, especially if your dataset is small
+or noisy.</li>
+</ul><div class="section level3">
+<h3 id="when-does-this-approach-work-best">When does this approach work best?<a class="anchor" aria-label="anchor" href="#when-does-this-approach-work-best"></a></h3>
+<p>Fine-tuning a few top layers is a good middle ground. You’re adapting
+the model without retraining everything from scratch. If your dataset is
+small or very different from the original ImageNet data, you should be
+careful not to unfreeze too many layers.</p>
+<p>For most use cases: - Freeze most layers - Unfreeze the top block or
+two - Avoid full fine-tuning unless you have lots of data and
+compute</p>
 </div>
 </div>
 </div>
