@@ -47,6 +47,63 @@ val_images = np.load(DATA_FOLDER / 'test_images.npy')
 train_labels = np.load(DATA_FOLDER / 'train_labels.npy')
 val_labels = np.load(DATA_FOLDER / 'test_labels.npy')
 ```
+
+::: callout
+### Google Colab + GPUs recommended
+This episode uses a respectably sized neural network — *DenseNet121*, which has 121 layers and over 7 million parameters. Training or "finetuning" this large of a model on a CPU is slow. Graphical Processing Units (GPUs) dramatically accelerate deep learning by speeding up the underlying matrix operations, often achieving **10-100x faster performance** than CPUs.
+
+To speed things up, we recommend using [Google Colab](https://colab.research.google.com/), which provides free access to a GPU. 
+
+#### How to run this episode in Colab:
+
+A. **Upload the `dl_workshop` folder to your Google Drive.**  
+   This folder should contain the `data/` directory with the `.npy` files used in this episode. If the instructor has provided pre-filled notebooks for the workshop, please upload these as well.
+
+B. **Start a blank notebook in Colab or open pre-filled notebook provided by instructor**
+   Go to [https://colab.research.google.com/](https://colab.research.google.com/), click "New Notebook", and copy/paste code from this episode into cells.
+
+C. **Enable GPU:**
+   - Go to `Runtime > Change runtime type`
+   - Set "Hardware accelerator" to `GPU`
+   - Click "Save"
+
+D. **Mount your Google Drive in the notebook:**
+
+```python
+from google.colab import drive
+drive.mount('/content/drive')
+```
+E. **Set the data path to point to your uploaded folder, and load data:**
+
+```python
+import pathlib
+import numpy as np
+DATA_FOLDER = pathlib.Path('/content/drive/MyDrive/dl_workshop/data')
+train_images = np.load(DATA_FOLDER / 'train_images.npy')
+val_images = np.load(DATA_FOLDER / 'test_images.npy')
+train_labels = np.load(DATA_FOLDER / 'train_labels.npy')
+val_labels = np.load(DATA_FOLDER / 'test_labels.npy')
+```
+
+F. **Check if GPU is active:**
+
+```python
+import tensorflow as tf
+
+if tf.config.list_physical_devices('GPU'):
+    print("GPU is available and will be used.")
+else:
+    print("GPU not found. Training will use CPU and may be slow.")
+```
+
+```output
+GPU is available and will be used.
+```
+
+Assuming you have installed the GPU-enabled version of TensorFlow (which is pre-installed in Colab), you don't need to do anything else to enable GPU usage during training, tuning, or inference. TensorFlow/Keras will automatically use the GPU whenever it's available and supported. Note — we didn't include the GPU version of Tensorflow in this workshop's virtual environment because it can be finnicky to configure across operating systems, and many learners don't have the appropriate GPU hardware available.
+
+:::
+
 ## 2. Identify inputs and outputs
 
 As discussed in the previous episode, the input are images of dimension 64 x 64 pixels with 3 colour channels each.
@@ -259,6 +316,96 @@ The final validation accuracy reaches 64%, this is a huge improvement over 30% a
 
 ::::
 :::
+
+::: challenge
+## Fine-Tune the Top Layer of the Pretrained Model
+
+So far, we've trained only the custom head while keeping the DenseNet121 base frozen. Let's now **unfreeze just the top layer group** of the base model and observe how performance changes.
+
+### 1. Unfreeze top layers
+Unfreeze just the final convolutional block of the base model using:
+
+```python
+# 1. Unfreeze top block of base model
+set_trainable = False
+for layer in base_model.layers:
+    if 'conv5' in layer.name:
+        set_trainable = True
+    layer.trainable = set_trainable
+```
+
+### 2. Recompile the model
+Any time you change layer trainability, you **must recompile** the model.
+
+Use the same optimizer and loss function as before:
+- `optimizer='adam'`
+- `loss=SparseCategoricalCrossentropy(from_logits=True)`
+- `metrics=['accuracy']`
+
+### 3. Retrain the model
+Retrain the model using the same setup as before:
+
+- `batch_size=32`
+- `epochs=30`
+- Early stopping with `patience=5`
+- Pass in the validation set using `validation_data`
+- Store the result in a new variable called `history_finetune`
+
+> 📝 You can reuse your `early_stopper` callback or redefine it.
+
+### 4. Compare with baseline (head only)
+Plot the **validation accuracy** for both the baseline and fine-tuned models.
+
+**Questions to reflect on:**
+- Did unfreezing part of the base model improve validation accuracy?
+- Did training time increase significantly?
+- Is there any evidence of overfitting?
+
+:::: solution
+## Solution
+```python
+# 1. Unfreeze top block of base model
+set_trainable = False
+for layer in base_model.layers:
+    if 'conv5' in layer.name:
+        set_trainable = True
+    else:
+        set_trainable = False
+    layer.trainable = set_trainable
+
+# 2. Recompile the model
+model.compile(optimizer='adam',
+              loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+              metrics=['accuracy'])
+
+# 3. Retrain the model
+early_stopper = keras.callbacks.EarlyStopping(monitor='val_accuracy', patience=5)
+history_finetune = model.fit(train_images, train_labels,
+                             batch_size=32,
+                             epochs=30,
+                             validation_data=(val_images, val_labels),
+                             callbacks=[early_stopper])
+
+# 4. Plot comparison
+def plot_two_histories(h1, h2, label1='Frozen', label2='Finetuned'):
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    df1 = pd.DataFrame(h1.history)
+    df2 = pd.DataFrame(h2.history)
+    plt.plot(df1['val_accuracy'], label=label1)
+    plt.plot(df2['val_accuracy'], label=label2)
+    plt.xlabel("Epochs")
+    plt.ylabel("Validation Accuracy")
+    plt.legend()
+    plt.title("Validation Accuracy: Frozen vs. Finetuned")
+    plt.show()
+
+plot_two_histories(history, history_finetune)
+
+```
+::::
+:::
+
 
 ## Concluding: The power of transfer learning
 In many domains, large networks are available that have been trained on vast amounts of data, such as in computer vision and natural language processing. Using transfer learning, you can benefit from the knowledge that was captured from another machine learning task. In many fields, transfer learning will outperform models trained from scratch, especially if your dataset is small or of poor quality.
