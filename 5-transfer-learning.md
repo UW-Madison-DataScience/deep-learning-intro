@@ -40,15 +40,18 @@ To speed things up, we recommend using [Google Colab](https://colab.research.goo
 #### How to run this episode in Colab:
 
 **A. Upload the `dl_workshop` folder to your Google Drive (excluding the `venv` folder).**  
-   This folder should contain the `data/` directory with the `.npy` files used in this episode. If the instructor has provided pre-filled notebooks for the workshop, please upload these as well. DO NOT UPLOAD your virtual environment folder as it is very large, and we'll be using Google Colab's pre-built environment instead.
+
+- This folder should contain the `data/` directory with the `.npy` files used in this episode. If the instructor has provided pre-filled notebooks for the workshop, please upload these as well. DO NOT UPLOAD your virtual environment folder as it is very large, and we'll be using Google Colab's pre-built environment instead.
 
 **B. Start a blank notebook in Colab or open pre-filled notebook provided by instructor**
-   Go to [https://colab.research.google.com/](https://colab.research.google.com/), click "New Notebook", and copy/paste code from this episode into cells.
+   
+- Go to [https://colab.research.google.com/](https://colab.research.google.com/), click "New Notebook", and copy/paste code from this episode into cells.
 
-**C. Enable GPU:**
-   - Go to `Runtime > Change runtime type`
-   - Set "Hardware accelerator" to `GPU`
-   - Click "Save"
+**C. Enable GPU**
+
+- Go to `Runtime > Change runtime type`
+- Set "Hardware accelerator" to `GPU`
+- Click "Save"
 
 **D. Mount your Google Drive in the notebook:**
 
