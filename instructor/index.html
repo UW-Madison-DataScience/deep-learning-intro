@@ -807,9 +807,14 @@ and move all 5 files to the data subfolder:</p>
 <li><code>dl_workshop/data/train_images.npy</code></li>
 <li><code>dl_workshop/data/test_images.npy</code></li>
 </ul><p><strong>Note</strong>: If you end up using Google Colab for the
-workshop, you’ll want to upload your <code>dl_workshop</code> folder to
-your Google drive. You can access files from Google drive using Colab
-and the following code:</p>
+workshop, you’ll want to create a folder called <code>dl_workshop</code>
+within your Google drive, and then create the same <code>data</code>
+subfolder as above with all 5 files uploaded. <strong>Avoid uploading
+the <code>venv</code> folder to your google drive</strong>; you’ll be
+using Colab’s pre-built environment instead, and the <code>venv</code>
+folder contains MANY files from the libraries you installed.</p>
+<p>You can access files from Google drive using Colab and the following
+code:</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -828,6 +833,8 @@ below:</p>
 <span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="co"># Load a CSV file from Drive</span></span>
 <span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'/content/drive/My Drive/dl_workshop/data/weather_prediction_dataset_light.csv'</span>)</span></code></pre>
 </div>
+<p>You can use the file navigator (folder icon) within Colab to help
+navigate your Google drive files.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
