@@ -1,15 +1,15 @@
 name: Convert Markdown to Notebooks
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'episodes/*.md'
-      - 'notebooks/convert-md-to-ipynb.py'
-  pull_request:
-    paths:
-      - 'episodes/*.md'
-      - 'notebooks/convert-md-to-ipynb.py'
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - 'episodes/*.md'
+  #     - 'notebooks/convert-md-to-ipynb.py'
+  # pull_request:
+  #   paths:
+  #     - 'episodes/*.md'
+  #     - 'notebooks/convert-md-to-ipynb.py'
   workflow_dispatch:  # adds the manual trigger
 
 
