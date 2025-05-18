@@ -645,17 +645,17 @@ activated prior to launching Jupyter Lab.</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">PYTHON<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">import</span> sklearn</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__)</span>
+<pre class="sourceCode python" tabindex="0"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__) <span class="co"># &gt;= 2.12.0</span></span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="im">import</span> seaborn</span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__)</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="im">import</span> sklearn</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'sklearn version: '</span>, sklearn.__version__) <span class="co"># &gt;= 1.2.2</span></span>
 <span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="im">import</span> pandas</span>
-<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__)</span>
-<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="im">import</span> tensorflow</span>
-<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Tensorflow version: '</span>, tensorflow.__version__)</span></code></pre>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="im">import</span> seaborn</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'seaborn version: '</span>, seaborn.__version__) <span class="co"># any version</span></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a> </span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="im">import</span> pandas</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'pandas version: '</span>, pandas.__version__) <span class="co"># any version </span></span></code></pre>
 </div>
 <p>This should output the versions of all required packages without
 giving errors. Most versions will work fine with this lesson, but:</p>
